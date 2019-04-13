@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Embedded | Modul 4</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!--================ Menu Area =================-->
+<!--- Menu Bar --->
+<nav class="navbar fixed-top navbar-expand-sm navbar-light bg-light shadow p-4 mb-4 bg-white">
+        <a class="navbar-brand" href="#">L200160155</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#embedded">Sistem Embedded</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#biometrics">Biometrik</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#ComputerVision">Computer Vision</a>
+                </li>
+            </ul>
+        </div>
+</nav>
+<br>
+  
+ <!-- End Menu Bar --> 
+<div class="jumbotron text-center" style="height: 80vh; background-color: #ffd200" id="#">
+  <div class="container" style="margin-top: 30vh">
+    <h1>Modul 4</h1>
+    <hr>
+    <p>Membaca Sensor LDR (<i>Light Dependent Resistor</i>)</p> 
+  </div>
+</div>
+<!--================ End Menu Area =================-->  
+
+<div class="container">
+  <div class="section-top-border">
+      <div class="col-lg-6 col-sm-6">
+        <h3>Tujuan</h3>
+        <div class="">
+          <ul class="unordered-list">
+            <li>Membaca sensor cahaya LDR <i>Light Dependent Resistor</i></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-6">
+      <h3>Peralatan yang diperlukan:</h3>
+      <div class="">
+        <ul class="unordered-list">
+          <li>Board Arduino</li>
+          <li>LDR</li>
+          <li>Resistor</li>
+          <li>Breadboard</li>
+          <li>LED</li>
+        </ul>
+      </div>
+  </div>
+  </div>
+  <br>
+  <hr>
+  <div class="whole-wrap">
+    <div class="container">
+      <div class="section-top-border">
+      <h5>Tugas</h5>
+        <ol class="ordered-list">
+        <li><span>Gunakan display 7-segment sebagai indikator intensitas cahaya sederhana, dengan LDR sebagai sensornya. Gambarkan rangkaiannya dan susun kode programnya.</span></li>
+        </ol>        
+        <br>
+        <div class="row">
+          <div class="container">
+            <h5>Kode Program</h5>
+              <pre class="bg-light">
+      int val[]={B11000000, B11111001, B10100100,B10110000, B10011001, B10010010, B10000010, B11111000,B10000000, B10010000};
+      int potPin = A0;
+      int LEDPin = 9;
+      int potValue = 0;
+      int LEDValue = 0;
+
+      void setup() {
+        // put your setup code here, to run once:
+        DDRD = B11111111;
+       
+      }
+
+      void loop() {
+        // put your main code here, to run repeatedly:
+        potValue = analogRead(potPin);
+        LEDValue = potValue;
+        analogWrite (LEDPin,LEDValue/4);
+        
+        if (LEDValue > 0 && LEDValue < 100){
+          PORTD = val[0];
+        }
+        else if (LEDValue > 101 && LEDValue < 200){
+          PORTD = val[1];
+        }
+        else if (LEDValue > 201 && LEDValue < 300){
+          PORTD = val[2];
+        }
+        else if (LEDValue > 301 && LEDValue < 400){
+          PORTD = val[3];
+        }
+        else if (LEDValue > 401 && LEDValue < 500){
+          PORTD = val[4];
+        }
+        else if (LEDValue > 501 && LEDValue < 600){
+          PORTD = val[5];
+        }
+        else if (LEDValue > 601 && LEDValue < 700){
+          PORTD = val[6];
+        }
+        else if (LEDValue > 701 && LEDValue < 800){
+          PORTD = val[7];
+        }
+        else if (LEDValue > 801 && LEDValue < 900){
+          PORTD = val[8];
+        }
+        else if (LEDValue > 901 && LEDValue < 1000){
+          PORTD = val[9];
+        }
+      }
+              </pre>
+            
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-6 col-s-9">
+            <h5>Hasil Program</h5>
+            <br>
+            <video width="320" height="240" controls>
+                <source src="video/modul4.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+</div>
+
+</body>
+</html>
