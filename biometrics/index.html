@@ -47,151 +47,52 @@
 </div>
 <!--================ End Menu Area =================-->  
 
-<!--== 
 <div class="container">
   <div class="section-top-border">
       <div class="col-lg-6 col-sm-6">
-        <h3>Tujuan</h3>
-        <div class="">
+        <h3>Tugas 2</h3>
+        <hr>
+        <div class="container">
+          <p>Preposesing Image Finger Print dengan tahapan sebagai berikut:</p>
           <ul class="unordered-list">
-            <li>Membaca sinyal analog dari sebuah potensiometer</li>
-            <li>Mengatur tingkat kecerahan lampu LED</li>
+            <li>Gabor Filter</li>
+            <li>Thining</li>
+            <li>Minuteae Extraction</li>
           </ul>
         </div>
+        <h3>Syarat :</h3>
+        <hr>
+        <ul>
+            <li>Python 3.7</li>
+            <li>Python imaging library (PIL)</li>
+            <li>Fingerprint image</li>
+            <li>Fingerprint Module, <a href="https://github.com/L200160155/L200160155.github.io/tree/master/biometrics/fingerPrint">Disini</a> <br>
+                Original Module (github rtshadow), <a href="https://github.com/rtshadow/biometrics">Disini</a>
+            </li>
+        </ul>
       </div>
-      </div>
-  <br>
-
-  <div class="whole-wrap">
-    <div class="container">
-      <div class="section-top-border">
-        <h4>A. Membaca sinyal analog dari sebuah potensiometer</h4>
-        <br>
-        <div class="row">
-          <div class="col-md-12 mt-sm-20 left-align-p">
-            <h5>Tugas</h5>
-              <ol class="ordered-list">
-              <li><span>Gunakan 5 buah LED sebagai indikator posisi putaran knop potensiometer. LED pertama akan menyala jika nilai hasil baca antara 0 sampai dengan 200, LED kedua menyala untuk hasil baca antara 201-400, LED ke 3 untuk range antara 401-600, LED ke 4 untuk range antara 601-800, LED ke 5 untuk hasil baca yang lebih besar dari 800.</span></li>        
-          </div>
-        </div>
-        <br>
-        <div class="row">
-          <div class="container">
-            <h5>Kode Program</h5>
-              <pre class="bg-light">
-    int ledPin1 = 13; 
-    int ledPin2 = 12;
-    int ledPin3 = 11;
-    int ledPin4 = 10;
-    int ledPin5 = 9;
-    int ledPin7 = 7;
-    int sensorPin = A0;
-    int sensorValue = 0;
-    int redupTerang = 0;
-    void setup() {
-      // put your setup code here, to run once:
-      pinMode(ledPin1,OUTPUT);
-      pinMode(ledPin2,OUTPUT);
-      pinMode(ledPin3,OUTPUT);
-      pinMode(ledPin4,OUTPUT);
-      pinMode(ledPin5,OUTPUT);
-    }
-
-    void loop() {
-      // put your main code here, to run repeatedly:
-      sensorValue = analogRead(sensorPin);
-      if(sensorValue > 0 && sensorValue <= 200){
-          digitalWrite(ledPin1,HIGH);
-          digitalWrite(ledPin2,LOW);
-          analogWrite(ledPin7, LOW);  
-        }
-      else if (sensorValue > 201 && sensorValue <= 400){
-        digitalWrite(ledPin2,HIGH);
-        digitalWrite(ledPin1,LOW);
-        digitalWrite(ledPin3,LOW);
-        }
-      else if (sensorValue > 401 && sensorValue <= 600){
-        digitalWrite(ledPin3,HIGH);
-        digitalWrite(ledPin2,LOW);
-        digitalWrite(ledPin4,LOW);      
-        }
-      else if (sensorValue > 601 && sensorValue < 800){
-        digitalWrite(ledPin4,HIGH);
-        digitalWrite(ledPin3,LOW);
-        digitalWrite(ledPin5,LOW);
-        }
-      else if (sensorValue > 800){
-        digitalWrite(ledPin5,HIGH);
-        digitalWrite(ledPin4,LOW);
-        digitalWrite(ledPin3,LOW);
-        }
-    }
-              </pre>
-            
-          </div>
-        </div>
-        <div class="row">
-          <div class="container">
-            <h5>Hasil Program</h5>
-            <video width="320" height="240" controls>
-            <source src="../video/.." type="video/mp4">
-            </video>
-          </div>
-        </div>
+      <div class="col-lg-10">
+        <h3>Hasil</h3>
+        <table class="table">
+          <tbody>
+            <tr>
+              <th style="width: 25%">Original Image</th>
+              <th style="width: 25%">Gabor Filter</th>
+              <th style="width: 25%">Thining</th>
+              <th style="width: 25%">Extract Minutiae</th>
+            </tr>
+            <tr>
+              <th><img src="images/3.jpeg"></th>
+              <th><img src="images/3_enhanced.gif"></th>
+              <th><img src="images/3_enhanced_thinned.gif"></th>
+              <th><img src="images/3_enhanced_thinned_minutiae.gif"></th>
+            </tr>
+          </tbody>
+        </table>
       </div>
   </div>
-  <br>
-
-   <div class="whole-wrap">
-    <div class="container">
-      <div class="section-top-border">
-        <h4>B. Mengatur tingkat kecerahan lampu LED</h4>
-        <br>
-        <div class="row">
-          <div class="col-md-12 mt-sm-20 left-align-p">
-            <h5>Tugas</h5>
-              <ol class="ordered-list">
-              <li><span>Gabungkan LED 2 rangkaian pada modul, ini kemudian susun kode program untuk mengatur tingkat kecerahan LED dengan menggunakan sebuah potensiometer. </span></li>
-            </ol>
-          </div>
-        </div>
-        <br>
-        <div class="row">
-          <div class="container">
-            <h5>Kode Program</h5>
-              <pre class="bg-light">
-int potPin = A0;
-int ledPin = 9;
-int potValue = 0;
-int ledValue = 0;
-
-void setup() {
-    // put your setup code here, to run once:
-    Serial.begin(9600);
-}
-
-void loop() {
-    // put your main code here, to run repeatedly:
-    potValue = analogRead(potPin);
-    ledValue = map(potValue, 350, 800, 0, 255);
-    analogWrite(ledPin, ledValue);
-    delay(2);
-    Serial.println(potValue);
-}
-              </pre>
-            
-          </div>
-        </div>
-        <div class="row">
-          <div class="container">
-            <h5>Hasil Program</h5>
-            <video width="320" height="240" controls>
-            <source src="../video/.." type="video/mp4">
-            </video>
-          </div>
-        </div>
-      </div>
-  </div>
-  ==-->
+</div>
+<br>
+  
 </body>
 </html>
